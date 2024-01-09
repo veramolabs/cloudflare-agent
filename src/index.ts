@@ -27,17 +27,17 @@ app.use('*', RequestWithAgentMiddleware({
   getAgentForRequest,
 }))
 
-app.on('POST', '/agent/*', async (c, next) => {
+app.on('POST', '/api/*', async (c, next) => {
   const bearer = bearerAuth({ token: c.env.API_KEY });
   return bearer(c, next);
 })
 
-app.route('/agent', AgentRouter({
+app.route('/api', AgentRouter({
   exposedMethods
 }))
 
-app.route('/schema', ApiSchemaRouter({
-  basePath: '/agent',
+app.route('/api/json', ApiSchemaRouter({
+  basePath: '/api',
   exposedMethods
 }))
 
