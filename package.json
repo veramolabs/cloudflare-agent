@@ -1,0 +1,28 @@
+{
+  "scripts": {
+    "dev": "wrangler dev src/index.ts",
+    "deploy": "wrangler deploy --minify src/index.ts"
+  },
+  "dependencies": {
+    "@veramo/core": "^5.5.3",
+    "@veramo/core-types": "^5.5.3",
+    "@veramo/credential-w3c": "^5.5.3",
+    "@veramo/data-store-json": "^5.5.3",
+    "@veramo/did-manager": "^5.5.3",
+    "@veramo/did-provider-ethr": "^5.5.3",
+    "@veramo/did-resolver": "^5.5.3",
+    "@veramo/key-manager": "^5.5.3",
+    "@veramo/kms-local": "^5.5.3",
+    "@veramo/remote-client": "^5.5.3",
+    "debug": "^4.3.4",
+    "did-resolver": "^4.1.0",
+    "ethr-did-resolver": "^10.1.1",
+    "hono": "^3.11.11",
+    "web-did-resolver": "^2.0.27"
+  },
+  "devDependencies": {
+    "@cloudflare/workers-types": "^4.20231218.0",
+    "@types/debug": "^4.1.12",
+    "wrangler": "^3.22.0"
+  }
+}

@@ -1,0 +1,22 @@
+{
+	"configurations": [
+		{
+			"name": "Wrangler Dev",
+			"type": "node",
+			"request": "launch",
+			"resolveSourceMapLocations": ["**", "!**/node_modules/**"], //This is key, the source maps to resolve end up located in your temp directory, and vscode by default only looks in your workspace directory. You can also set this to null or an empty array, but source maps in node_modules might get evaluated which may slow you down significantly unless you specifically want to debug those.
+			"program": "${workspaceFolder}/node_modules/wrangler/bin/wrangler.js", // You can also use the CLI directly but this is cleaner. Alternatively, you can define your start in tasks.json and make this depend on it via preLaunchTask, as long as whatever port you start the inspector on matches the port defined here for attachSimplePort
+			"args": ["dev", "--inspector-port=59229", "src/index.ts"], //Force a high port to avoid conflicts with other debuggers
+			"attachSimplePort": 59229, //Matches --inspector-port above
+			"internalConsoleOptions": "neverOpen", // We want to see Wrangler's output usually so hide this
+			"console": "integratedTerminal", // Shows the wrangler output
+			"autoAttachChildProcesses": false
+		},
+		{
+			"name": "Attach to existing Wrangler",
+			"type": "node",
+			"request": "attach",
+			"resolveSourceMapLocations": ["**", "!**/node_modules/**"]
+		}
+	]
+}
