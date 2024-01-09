@@ -10,6 +10,11 @@ cd cloudflare-agent
 ```
 pnpm install
 ```
+Authorize Wrangler with your Cloudflare account:
+
+```
+pnpm wrangler login
+```
 
 Create `wrangler.toml` file.
 
@@ -31,7 +36,7 @@ npx @veramo/cli config create-secret-key
 
 Copy and paste this to your `wrangler.toml` (don't forget to update these values)
 ```toml
-name = "hono-veramo"
+name = "veramo-agent"
 compatibility_date = "2023-01-01"
 compatibility_flags = [ "nodejs_compat" ]
 
@@ -50,6 +55,10 @@ Deploy:
 ```
 pnpm run deploy
 ```
+If succesfull, the output should contain a URL similar to this:
+`https://veramo-agent.example.workers.dev`
+
+If you open it, you should see your default DID.
 
 ## Running locally
 
