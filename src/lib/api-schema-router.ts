@@ -1,6 +1,6 @@
 import { Hono } from 'hono'
 import { getOpenApiSchema } from '@veramo/remote-client'
-import { ContextWithAgent } from './request-agent-router.js'
+import { ContextWithAgent } from './request-agent-router'
 
 /**
  * @public
@@ -47,7 +47,7 @@ export interface ApiSchemaRouterOptions {
 export const ApiSchemaRouter = (options: ApiSchemaRouterOptions): Hono => {
   const router = new Hono()
 
-  router.get('/', (c: ContextWithAgent) => {
+  router.get('/', (c: ContextWithAgent<any>) => {
     if (c.agent) {
       const openApiSchema = getOpenApiSchema(
         c.agent,

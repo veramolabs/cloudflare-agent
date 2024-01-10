@@ -15,6 +15,8 @@ import { DIDManager } from '@veramo/did-manager'
 // Ethr did identity provider
 import { EthrDIDProvider } from '@veramo/did-provider-ethr'
 
+import { WebDIDProvider } from '@veramo/did-provider-web'
+
 // Core key manager plugin
 import { KeyManager } from '@veramo/key-manager'
 
@@ -64,6 +66,9 @@ export const getAgent = async ({ namespace, infuraProjectId, kmsSecretKey }: {
             defaultKms: 'local',
             network: 'goerli',
             rpcUrl: 'https://goerli.infura.io/v3/' + infuraProjectId,
+          }),
+          'did:web': new WebDIDProvider({
+            defaultKms: 'local',
           }),
         },
       }),

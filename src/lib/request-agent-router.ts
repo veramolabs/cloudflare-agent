@@ -1,8 +1,8 @@
-import { IAgent } from '@veramo/core-types'
+import { IPluginMethodMap, TAgent } from '@veramo/core-types'
 import { Context, MiddlewareHandler } from 'hono'
 
-export interface ContextWithAgent extends Context {
-  agent?: IAgent
+export interface ContextWithAgent<T extends IPluginMethodMap> extends Context {
+  agent?: TAgent<T>
 }
 
 /**
@@ -12,12 +12,12 @@ export interface RequestWithAgentRouterOptions {
   /**
    * Optional. Pre-configured agent
    */
-  agent?: IAgent
+  agent?: TAgent<any>
 
   /**
    * Optional. Function that returns a Promise that resolves to a configured agent for specific request
    */
-  getAgentForRequest?: (c: Context) => Promise<IAgent>
+  getAgentForRequest?: (c: Context) => Promise<TAgent<any>>
 }
 
 /**
@@ -31,7 +31,7 @@ export interface RequestWithAgentRouterOptions {
  * @public
  */
 export const RequestWithAgentMiddleware = (options: RequestWithAgentRouterOptions): MiddlewareHandler =>
-  async (c: ContextWithAgent, next) => {
+  async (c: ContextWithAgent<any>, next) => {
     if (options.agent) {
       c.agent = options.agent
     } else if (options.getAgentForRequest) {

@@ -62,6 +62,19 @@ If you open it, you should see your default DID.
 
 ## Running locally
 
+Create preview KV namespace
+
+```
+pnpm wrangler kv:namespace create KV --preview
+```
+
+Add preview id to `wrangler.toml`
+
+```
+[[kv_namespaces]]
+binding = "KV"
+preview_id = "XYZ"
+
 ```
 pnpm run dev
 ```

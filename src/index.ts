@@ -5,6 +5,7 @@ import { exposedMethods, getAgent } from './veramo'
 import { RequestWithAgentMiddleware } from './lib/request-agent-router'
 import { AgentRouter } from './lib/agent-router'
 import { ApiSchemaRouter } from './lib/api-schema-router'
+import { WebDidDocRouter } from './lib/web-did-doc-router'
 
 type Bindings = {
   KV: KVNamespace
@@ -25,6 +26,10 @@ app.use('*', cors())
 
 app.use('*', RequestWithAgentMiddleware({
   getAgentForRequest,
+}))
+
+app.route('/', WebDidDocRouter({
+  createMissingIdentifier: true,
 }))
 
 app.on('POST', '/api/*', async (c, next) => {
